@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+
+
+
+
+<div class="container">
+    <div class="row">
+
+    {% block content %}
+
+        {% if products %}
+
+        <br>
+        <h2 class="col-sm-5 col-md-offset-4"> Products You Have Bought</h2>
+
+
+            {% for product in products %}
+            <div class="col-sm-4">
+                <div class="card">
+                    <img class="card-img-top" src="{{ product.product_image.url }}" alt="Card image cap" width="180" height="auto">
+                    <div class="card-block">
+                        <h4 class="card-title"> Name: {{ product.product_name }} </h4>
+                        <h4 class="card-title">  Seller: {{ product.product_seller }} </h4>
+                        <h4 class="card-title">  Payed: ${{ product.product_cost }} </h4>
+                        <a class="btn btn-default" href="{% url 'product_remove' pk=product.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+
+                    </div>
+                </div>
+                <br>
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+        <div class="col-sm-3 col-md-offset-4">
+        <div class="jumbotron jumbotron-fluid">
+
+            <p class="lead">You have not bought any items</p>
+        </div>
+        </div>
+
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+
+            <br>
+        <h2 class="col-sm-4 col-md-offset-5">{{ product.product_name }} Details </h2>
+
+            <div class="col-sm-2 col-md-offset-5">
+
+                <div class="card">
+                    <img class="card-img-top" src="..." alt="Card image cap">
+                    <div class="card-block">
+                        <h4 class="card-title">  {{ product.product_name }} </h4>
+                        <h5 class="card-title"> Sold by:{{ product.product_seller }} </h5>
+                        <h6 class="card-title"> Cost: ${{ product.product_cost }} </h6>
+                        <p class="card-text"> {{product.product_description}}</p>
+                        <a href="{% url 'buyproduct' pk=product.id %}" class="btn btn-primary">Buy</a>
+
+                    </div>
+                </div>
+
+                
+            {% if warning %}
+
+                <div class="alert alert-danger" role="alert">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <strong>Warning!</strong> {{warning}}
+                </div>
+
+             {% endif %}
+            </div>
+
+{% endblock %}

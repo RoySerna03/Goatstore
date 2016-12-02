@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+
+
+
+<div class="container">
+    <div class="row">
+
+    {% block content %}
+
+        {% if products %}
+
+        <br>
+        <h2 class="col-sm-4 col-md-offset-5"> Products You Are Selling</h2>
+
+
+            {% for product in products %}
+            <div class="col-sm-4">
+                <div class="card card-inverse card-success text-xs-center">
+                    <img class="img-rounded" src="{{ product.product_image.url }}" width="180" height="auto">
+                    <div class="card-block">
+                        <h4 class="card-title"> Product Name: {{ product.product_name }} </h4>
+                        <h4 class="card-title"> Selling For: ${{ product.product_cost }} </h4>
+                        <a class="btn btn-default" href="{% url 'product_remove' pk=product.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+
+                    </div>
+                </div>
+                <br>
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <p class="lead">You do not have any items on the market.</p>
+            </div>
+        </div>
+
+        {% endif %}
+    </div>
+</div>    
+
+
+{% endblock %}
